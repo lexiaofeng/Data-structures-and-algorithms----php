@@ -111,9 +111,10 @@ use dataStructure\Queue\LoopQueue;
 
 
 //    $arr = arrayGenerator::generateOrderArray(10000,10000);
-//    $arr = arrayGenerator::generateRandomArray(10000,10000);
-//    $res = sortTest::sortTest('insertSort',$arr);
-//    echo '<pre>';var_dump($res);exit;
+    $arr = arrayGenerator::generateRandomArray(10000,10000);
+//    echo '<pre>';var_dump($arr);exit;
+    $res = sortTest::sortTest('mergeSort',$arr);
+    echo '<pre>';var_dump($res);exit;
 
 
 
@@ -148,19 +149,19 @@ use dataStructure\Queue\LoopQueue;
 //
 //echo '<pre>';var_dump($obj->pop());exit;
 
-
-
-    $linkedlist = new \dataStructure\LinkedList\LinkedList();
-    $linkedlist->addFirst(3);
-    $linkedlist->addFirst(4);
-    $linkedlist->addFirst(5);
-    $linkedlist->addFirst(2);
-    $linkedlist->addFirst(9);
-    $linkedlist->addFirst(3);
-//echo '<pre>';var_dump((string)$linkedlist);exit;
-
-$test = new \algorithm\LeetCode\LeetCode203();
-echo '<pre>';var_dump($test);exit;
+//
+//
+//    $linkedlist = new \dataStructure\LinkedList\LinkedList();
+//    $linkedlist->addFirst(3);
+//    $linkedlist->addFirst(4);
+//    $linkedlist->addFirst(5);
+//    $linkedlist->addFirst(2);
+//    $linkedlist->addFirst(9);
+//    $linkedlist->addFirst(3);
+////echo '<pre>';var_dump((string)$linkedlist);exit;
+//
+//$test = new \algorithm\LeetCode\LeetCode203();
+////echo '<pre>';var_dump($test);exit;
 //echo '<pre>';var_dump($test->removeElements($linkedlist->getFirst(),3));exit;
 
 ?>

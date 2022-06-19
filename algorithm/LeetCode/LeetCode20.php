@@ -1,11 +1,11 @@
 <?php
 
 
-namespace algorithm;
+namespace algorithm\LeetCode;
 use dataStructure\arrayStack;
 
 
-class leetCodeSolution
+class leetCode20
 {
     /**
      * 20. 有效的括号

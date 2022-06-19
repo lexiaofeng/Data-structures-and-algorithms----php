@@ -14,6 +14,7 @@ use dataStructure\LinkedList\Node;
 class LeetCode203
 {
 
+    //解法1
     function removeElements(Node $head, $val) {
         while ($head !=null && $head->e == $val){
             $head = $head->next;
@@ -32,6 +33,15 @@ class LeetCode203
         }
 
         return $head;
+    }
+
+    //解法2 递归
+  function removeElements2($head, $val) {
+        if ($head == null){
+            return $head;
+        }
+        $head->next =$this->removeElements2($head->next,$val);
+       return $head->e == $val ?$head->next:$head;
     }
 }
 

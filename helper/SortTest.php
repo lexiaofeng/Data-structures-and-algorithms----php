@@ -3,6 +3,7 @@
 
 namespace helper;
 
+use algorithm\MergeSort;
 use Exception;
 use algorithm\selectSort;
 use algorithm\insertSort;
@@ -37,6 +38,11 @@ class sortTest
 //            $arr = insertSort::sort($array);
             //小优化版
             $arr = insertSort::sort2($array);
+        }elseif ($sortname == 'mergeSort'){
+            $len =  count($array);
+            $sort = new MergeSort();
+            $sort->MergeSort($array);
+            $arr = $array;
         }
 
 
