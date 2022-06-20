@@ -4,6 +4,12 @@
 namespace algorithm;
 
 
+/**
+ * 归并排序
+ * 时间复杂度： O(nlogn)
+ * Class MergeSort
+ * @package algorithm
+ */
 class MergeSort
 {
     public function __construct()
@@ -11,25 +17,50 @@ class MergeSort
     }
 
     //归并算法总函数
-  public function MergeSort(&$arr){
+    public function MergeSort(&$arr){
         $start = 0;
         $end = count($arr) - 1;
-        $this->sort($arr,$start,$end);
+//        $this->sort($arr,$start,$end);
+        $this->sortBU($arr);
     }
 
-    public function sort(&$arr,$l,$r,$depthstring=0)
+    /**
+     * 自顶向下的归并排序
+     * @param $arr
+     * @param $l
+     * @param $r
+     */
+    public function sort(&$arr,$l,$r)
     {
         //单点调试
-//        $depthstring = 0;
 //        var_dump('recursion:',$arr,$depthstring);
 
         if ($l>=$r) return;
 
         $mid = floor(($l+$r)/2);
-        $this->sort($arr,$l,$mid,$depthstring+1);
-        $this->sort($arr,$mid+1,$r,$depthstring+1);
+        $this->sort($arr,$l,$mid);
+        $this->sort($arr,$mid+1,$r);
         $this->merge($arr,$l,$mid,$r);
 
+    }
+
+    /**
+     * 自底向上的归并排序
+     * @param $arr
+     */
+    public function sortBU(&$arr)
+    {
+        $len = count($arr);
+
+        // 遍历合并的区间长度
+        for ($size=1;$size<$len;$size+=$size){
+            // 遍历合并的两个区间的起始位置 i
+            // 合并[$i,$i+$size-1] [$i+$size,$i+$size+$size-1]
+            for ($i=0;$i+$size<$len;$i+=$size+$size){
+                $this->merge($arr,$i,$i+$size-1,min($i+$size+$size-1,$len-1));
+            }
+
+        }
     }
 
     /**
