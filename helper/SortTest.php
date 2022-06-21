@@ -4,6 +4,7 @@
 namespace helper;
 
 use algorithm\MergeSort;
+use algorithm\QuickSort;
 use Exception;
 use algorithm\selectSort;
 use algorithm\insertSort;
@@ -42,6 +43,10 @@ class sortTest
             $len =  count($array);
             $sort = new MergeSort();
             $arr =  $sort->MergeSort($array);
+        }elseif ($sortname == 'quickSort'){
+            $len =  count($array);
+            $sort = new QuickSort();
+            $arr =  $sort->quickSort($array);
         }
 
 

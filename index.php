@@ -111,9 +111,9 @@ use dataStructure\Queue\LoopQueue;
 
 
 //    $arr = arrayGenerator::generateOrderArray(10000,10000);
-    $arr = arrayGenerator::generateRandomArray(10000,10000);
+    $arr = arrayGenerator::generateRandomArray(100000,10000);
 //    echo '<pre>';var_dump($arr);exit;
-    $res = sortTest::sortTest('mergeSort',$arr);
+    $res = sortTest::sortTest('quickSort',$arr);
     echo '<pre>';var_dump($res);exit;
 
 
