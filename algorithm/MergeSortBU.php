@@ -3,46 +3,41 @@
 
 namespace algorithm;
 
-
 /**
- * 归并排序
- * 时间复杂度： O(nlogn)
- * Class MergeSort
+ * 自底向上的归并排序
+ * Class MergeSortBU
  * @package algorithm
  */
-class MergeSort
+class MergeSortBU
 {
     public function __construct()
     {
     }
 
     //归并算法总函数
-    public function MergeSort($arr){
+    public function MergeSort(&$arr){
         $start = 0;
         $end = count($arr) - 1;
-        $temp_arr = &$arr;
-        $this->sort($temp_arr,$start,$end);
-        return $temp_arr;
+        $this->sortBU($arr);
     }
 
     /**
-     * 自顶向下的归并排序
+     * 自底向上的归并排序
      * @param $arr
-     * @param $l
-     * @param $r
      */
-    public function sort(&$arr,$l,$r,$depthstring=0)
+    public function sortBU(&$arr)
     {
-        //单点调试
-//        var_dump('recursion:',$arr,$depthstring);
+        $len = count($arr);
 
-        if ($l>=$r) return;
+        // 遍历合并的区间长度
+        for ($size=1;$size<$len;$size+=$size){
+            // 遍历合并的两个区间的起始位置 i
+            // 合并[$i,$i+$size-1] [$i+$size,$i+$size+$size-1]
+            for ($i=0;$i+$size<$len;$i+=$size+$size){
+                $this->merge($arr,$i,$i+$size-1,min($i+$size+$size-1,$len-1));
+            }
 
-        $mid = floor(($l+$r)/2);
-        $this->sort($arr,$l,$mid,$depthstring+1);
-        $this->sort($arr,$mid+1,$r,$depthstring+1);
-        $this->merge($arr,$l,$mid,$r);
-
+        }
     }
 
     /**
@@ -62,8 +57,8 @@ class MergeSort
         for ($k=$l;$k<=$r;$k++){
             //先判断$i,$j防止越界 在判断$arr[$i] 和 $arr[$j]的大小 因为是 l 和 r 有$l的数组偏移量
             if ($i>$mid){
-               $arr[$k] = $temp[$j];
-               $j++;
+                $arr[$k] = $temp[$j];
+                $j++;
             }elseif ($j>$r){
                 $arr[$k] = $temp[$i];
                 $i++;
@@ -115,6 +110,7 @@ class MergeSort
             $arr[$i] = $temparr[$i];
         }
     }
+
 
 
 }
