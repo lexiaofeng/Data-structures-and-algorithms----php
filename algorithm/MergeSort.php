@@ -17,11 +17,13 @@ class MergeSort
     }
 
     //归并算法总函数
-    public function MergeSort(&$arr){
+    public function MergeSort($arr){
         $start = 0;
         $end = count($arr) - 1;
-//        $this->sort($arr,$start,$end);
-        $this->sortBU($arr);
+        $temp_arr = &$arr;
+        $this->sort($temp_arr,$start,$end);
+//        $this->sortBU($arr);
+        return $temp_arr;
     }
 
     /**
@@ -30,7 +32,7 @@ class MergeSort
      * @param $l
      * @param $r
      */
-    public function sort(&$arr,$l,$r)
+    public function sort(&$arr,$l,$r,$depthstring=0)
     {
         //单点调试
 //        var_dump('recursion:',$arr,$depthstring);
@@ -38,8 +40,8 @@ class MergeSort
         if ($l>=$r) return;
 
         $mid = floor(($l+$r)/2);
-        $this->sort($arr,$l,$mid);
-        $this->sort($arr,$mid+1,$r);
+        $this->sort($arr,$l,$mid,$depthstring+1);
+        $this->sort($arr,$mid+1,$r,$depthstring+1);
         $this->merge($arr,$l,$mid,$r);
 
     }
@@ -80,19 +82,20 @@ class MergeSort
         for ($k=$l;$k<=$r;$k++){
             //先判断$i,$j防止越界 在判断$arr[$i] 和 $arr[$j]的大小 因为是 l 和 r 有$l的数组偏移量
             if ($i>$mid){
-               $arr[$k] = $temp[$j-$l];
+               $arr[$k] = $temp[$j];
                $j++;
             }elseif ($j>$r){
-                $arr[$k] = $temp[$i-$l];
+                $arr[$k] = $temp[$i];
                 $i++;
-            }elseif ($temp[$i-$l]<=$temp[$j-$l]){
-                $arr[$k] = $temp[$i-$l];
+            }elseif ($temp[$i]<=$temp[$j]){
+                $arr[$k] = $temp[$i];
                 $i++;
             }else{
-                $arr[$k] = $temp[$j-$l];
+                $arr[$k] = $temp[$j];
                 $j++;
             }
         }
+//        var_dump('merge:',$arr);
 
     }
 

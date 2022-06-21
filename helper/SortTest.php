@@ -41,8 +41,7 @@ class sortTest
         }elseif ($sortname == 'mergeSort'){
             $len =  count($array);
             $sort = new MergeSort();
-            $sort->MergeSort($array);
-            $arr = $array;
+            $arr =  $sort->MergeSort($array);
         }
 
 
